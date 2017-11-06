@@ -1,12 +1,8 @@
 package org.loushang.ldf.dao;
 
 import org.loushang.ldf.data.UserArchive;
-import org.loushang.ldf.util.MyMapper;
+import org.loushang.ldf.mybatis.mapper.EntityMapper;
 
-public interface ArchiveMapper extends MyMapper<UserArchive> {
+public interface ArchiveMapper extends EntityMapper<UserArchive> {
 
 }
-/*public interface ArchiveMapper extends Mapper<UserArchive>, MySqlMapper<UserArchive> {
-	
-}
-*/

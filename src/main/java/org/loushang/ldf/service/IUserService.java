@@ -36,4 +36,5 @@ public interface IUserService {
 	 * @return
 	 */
 	public Map<String, Object> deleteById(String id);
+
 }

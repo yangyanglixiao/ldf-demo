@@ -4,7 +4,7 @@ server:
 
 logging:
     level:
-        com.inspur: ERROR
+        org.loushang: TRACE 
     
 spring:
     datasource:
@@ -20,15 +20,5 @@ mybatis:
     type-aliases-package: org.loushang.ldf.data
     mapper-locations: classpath:dao/*.xml
     configuration:mapUnderscoreToCamelCase: true
-
 mapper:
-    mappers:
-        - org.loushang.ldf.util.MyMapper
-    not-empty: false
     identity: MYSQL
-
-pagehelper:
-    helperDialect: mysql
-    reasonable: true
-    supportMethodsArguments: true
-    params: count=countSql

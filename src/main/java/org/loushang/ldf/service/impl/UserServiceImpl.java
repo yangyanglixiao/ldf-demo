@@ -32,10 +32,10 @@ public class UserServiceImpl implements IUserService {
 		try {
 			if (user.getId() != null && !"".equals(user.getId())) {
 				// 更新用户信息
-				userMapper.updateByPrimaryKey(user);
+				userMapper.update(user);
 				// 更新用户档案信息
 				user.getArchive().setId(user.getId());
-				archiveMapper.updateByPrimaryKey(user.getArchive());
+				archiveMapper.update(user.getArchive());
 			} else {
 				// 保存用户信息
 				user.setId(UUID.randomUUID().toString());
@@ -62,7 +62,7 @@ public class UserServiceImpl implements IUserService {
 	public Map<String, Object> selectAll(Map<String, Object> parameters) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		PageHelper.startPage((Integer) parameters.get("start"), (Integer) parameters.get("limit"));
-		PageInfo<User> userPage = new PageInfo<User>(userMapper.selectAll());
+		PageInfo<User> userPage = new PageInfo<User>(userMapper.query(parameters));
 		data.put("data", userPage.getList());
 		data.put("total", userPage.getTotal());
 
@@ -78,8 +78,8 @@ public class UserServiceImpl implements IUserService {
 	public Map<String, Object> getUserDetailsById(String id) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		if (id != null && !"".equals(id)) {
-			User user = userMapper.selectByPrimaryKey(id);
-			UserArchive userArchive = archiveMapper.selectByPrimaryKey(id);
+			User user = userMapper.getByPrimaryKey(id);
+			UserArchive userArchive = archiveMapper.getByPrimaryKey(id);
 			if (user != null) {
 				data.put("id", user.getId());
 				data.put("userId", user.getUserId());
